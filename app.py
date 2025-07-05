@@ -70,15 +70,19 @@ def app_layout():
         ])
     ])
 
-app.layout = html.Div("TESTE OK")
+app.layout = html.Div([
+    dcc.Location(id='url', refresh=False),
+    html.Div("🚨 Entrou no layout!", id='page-content')
+])
 
-# Este callback mostra a tela de login ao abrir
 @app.callback(
     Output('page-content', 'children'),
     Input('url', 'pathname'),
 )
 def route_page(pathname):
-    return login_layout 
+    print("🧭 Callback route_page foi chamado")
+    return login_layout
+
 
 # Este callback executa o login e carrega o dashboard se a senha estiver certa
 @app.callback(
