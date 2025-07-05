@@ -70,10 +70,15 @@ def app_layout():
         ])
     ])
 
-app.layout = html.Div([
-    dcc.Location(id='url', refresh=False),
-    html.Div("🚨 Entrou no layout!", id='page-content')
-])
+def serve_layout():
+    return html.Div([
+        dcc.Location(id='url', refresh=False),
+        html.Div(id='page-content'),
+        dcc.Store(id='store-login')  # adiciona esse para possíveis melhorias futuras
+    ])
+
+app.layout = serve_layout
+
 
 @app.callback(
     Output('page-content', 'children'),
