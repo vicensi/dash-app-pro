@@ -74,6 +74,8 @@ app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
     html.Div(id='page-content')
 ])
+
+# Este callback mostra a tela de login ao abrir
 @app.callback(
     Output('page-content', 'children'),
     Input('url', 'pathname'),
@@ -81,6 +83,7 @@ app.layout = html.Div([
 def route_page(pathname):
     return login_layout 
 
+# Este callback executa o login e carrega o dashboard se a senha estiver certa
 @app.callback(
     Output('page-content', 'children'),
     Output('login-msg', 'children'),
@@ -95,13 +98,7 @@ def validar_login(n, user, senha):
         return app_layout(), ""
     return login_layout, "Usuário ou senha inválido."
 
-@app.callback(
-    Output('page-content', 'children'),
-    Input('url', 'pathname'),
-)
-def route_page(pathname):
-    return login_layout
-
+# Este callback faz logout
 @app.callback(
     Output('page-content', 'children'),
     Input('logout-btn', 'n_clicks'),
@@ -110,7 +107,7 @@ def route_page(pathname):
 def logout(n):
     logged_in_users.clear()
     return login_layout
-
+    
 # ======= Funções do dashboard a partir daqui =======
 
 def parse_contents(contents, filename):
