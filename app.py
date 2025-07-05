@@ -74,6 +74,12 @@ app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
     html.Div(id='page-content')
 ])
+@app.callback(
+    Output('page-content', 'children'),
+    Input('url', 'pathname'),
+)
+def route_page(pathname):
+    return login_layout 
 
 @app.callback(
     Output('page-content', 'children'),
