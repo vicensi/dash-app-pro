@@ -70,10 +70,7 @@ def app_layout():
         ])
     ])
 
-app.layout = html.Div([
-    dcc.Location(id='url', refresh=False),
-    html.Div(id='page-content')
-])
+app.layout = html.Div("TESTE OK")
 
 # Este callback mostra a tela de login ao abrir
 @app.callback(
